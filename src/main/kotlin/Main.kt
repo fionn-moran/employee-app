@@ -2,7 +2,7 @@ import kotlin.math.round
 
 val firstName = "Joe"
 val surname = "Soap"
-val gender = "M"
+val gender = 'm'
 val employeeID = 6143
 val grossSalary = 67543.21
 val payePercentage = 38.5
@@ -12,6 +12,7 @@ val cycleToWorkSchemeMonthlyDeduction = 54.33
 
 fun main(args: Array<String>) {
     println("Pay Slip Printer")
+    println(getFullName())
     printPayslip()
 
     //Try adding program arguments via Run/Debug configuration.
@@ -53,5 +54,13 @@ fun printPayslip() {
     )
 }
 
+
+
 // https://discuss.kotlinlang.org/t/how-do-you-round-a-number-to-n-decimal-places/8843
 fun roundToTwo(number: Double) = round(number * 100) / 100
+
+fun getFullName() = when (gender) {
+    'm', 'M' -> "Mr. $firstName $surname"
+    'f', 'F' -> "Ms. $firstName $surname"
+    else -> "$firstName $surname"
+}
