@@ -20,7 +20,7 @@ fun main(args: Array<String>) {
     println("Monthly Total Deductions: ${getTotalMonthlyDeductions()}")
     println("Monthly Net Pay: ${getNetMonthlyPay()}")
     println("Monthly Bonus: ${getMonthlyBonus()}")
-    printPayslip()
+    println(getPayslip())
 
 
     //Try adding program arguments via Run/Debug configuration.
@@ -28,7 +28,7 @@ fun main(args: Array<String>) {
     println("Program arguments: ${args.joinToString()}")
 }
 
-fun printPayslip() {
+fun getPayslip() {
 
     val monthlySalary = roundToTwo(grossSalary / 12)
     val monthlyPrsi = roundToTwo(monthlySalary * (prsiPercentage / 100))
