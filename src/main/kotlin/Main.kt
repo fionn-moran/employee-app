@@ -1,3 +1,5 @@
+import kotlin.math.round
+
 val firstName = "Joe"
 val surname = "Soap"
 val gender = "M"
@@ -19,13 +21,13 @@ fun main(args: Array<String>) {
 
 fun printPayslip() {
 
-    val monthlySalary = (grossSalary / 12)
-    val monthlyPrsi = monthlySalary * (prsiPercentage / 100)
-    val monthlyPaye = monthlySalary * (payePercentage / 100)
-    val monthlyBonus = (annualBonus / 12)
-    val grossPay = (monthlySalary + (annualBonus / 12))
-    val totalDeductions = (monthlyPrsi + monthlyPrsi + cycleToWorkSchemeMonthlyDeduction)
-    val netPay = (grossPay - totalDeductions)
+    val monthlySalary = roundToTwo(grossSalary / 12)
+    val monthlyPrsi = roundToTwo(monthlySalary * (prsiPercentage / 100))
+    val monthlyPaye = roundToTwo(monthlySalary * (payePercentage / 100))
+    val monthlyBonus = roundToTwo((annualBonus / 12))
+    val grossPay = roundToTwo((monthlySalary + (annualBonus / 12)))
+    val totalDeductions = roundToTwo((monthlyPrsi + monthlyPrsi + cycleToWorkSchemeMonthlyDeduction))
+    val netPay = roundToTwo((grossPay - totalDeductions))
 
     println("-------------------------------------------------------------------")
     println("| Employee Monthly Payslip                                        |")
@@ -50,3 +52,6 @@ fun printPayslip() {
     println("|                                                                 |")
     println("|-----------------------------------------------------------------|")
 }
+
+// https://discuss.kotlinlang.org/t/how-do-you-round-a-number-to-n-decimal-places/8843
+fun roundToTwo(number: Double) = round(number * 100) / 100
