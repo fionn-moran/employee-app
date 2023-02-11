@@ -11,24 +11,27 @@ val annualBonus = 1450.50
 val cycleToWorkSchemeMonthlyDeduction = 54.33
 
 fun main(args: Array<String>) {
-    println("Pay Slip Printer")
-    println(getFullName())
-    println("Monthly Salary: ${getMonthlySalary()}")
-    println("Monthly PRSI: ${getMonthlyPRSI()}")
-    println("Monthly PAYE: ${getMonthlyPAYE()}")
-    println("Monthly Gross Pay: ${getGrossMonthlyPay()}")
-    println("Monthly Total Deductions: ${getTotalMonthlyDeductions()}")
-    println("Monthly Net Pay: ${getNetMonthlyPay()}")
-    println("Monthly Bonus: ${getMonthlyBonus()}")
-    printPayslip()
 
+    var input : Int
 
-    //Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
+    do {
+        input = menu()
+        when(input) {
+            1 -> println("Monthly Salary: ${getMonthlySalary()}")
+            2 -> println("Monthly PRSI: ${getMonthlyPRSI()}")
+            3 ->println("Monthly PAYE: ${getMonthlyPAYE()}")
+            4 -> println("Monthly Gross Pay: ${getGrossMonthlyPay()}")
+            5 -> println("Monthly Total Deductions: ${getTotalMonthlyDeductions()}")
+            6 -> println("Monthly Net Pay: ${getNetMonthlyPay()}")
+            7 -> println(getPayslip())
+            -1 -> println("Exiting App")
+            else -> println("Invalid Option")
+        }
+        println()
+    } while (input != -1)
 }
 
-fun printPayslip() {
+fun getPayslip() {
 
     val monthlySalary = roundToTwo(grossSalary / 12)
     val monthlyPrsi = roundToTwo(monthlySalary * (prsiPercentage / 100))
@@ -82,3 +85,18 @@ fun getTotalMonthlyDeductions() = roundToTwo((getMonthlyPRSI() + getMonthlyPAYE(
 fun getNetMonthlyPay() = roundToTwo(getGrossMonthlyPay() - getTotalMonthlyDeductions())
 
 fun getMonthlyBonus() = roundToTwo(annualBonus / 12)
+
+fun menu() : Int {
+    print("""
+        Employee Menu for ${getFullName()}
+           1. Monthly Salary
+           2. Monthly PRSI
+           3. Monthly PAYE
+           4. Monthly Gross Pay
+           5. Monthly Total Deductions
+           6. Monthly Net Pay
+           7. Full Payslip
+          -1. Exit
+         Enter Option : """)
+    return readLine()!!.toInt()
+}
