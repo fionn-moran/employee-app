@@ -13,7 +13,15 @@ val cycleToWorkSchemeMonthlyDeduction = 54.33
 fun main(args: Array<String>) {
     println("Pay Slip Printer")
     println(getFullName())
+    println("Monthly Salary: ${getMonthlySalary()}")
+    println("Monthly PRSI: ${getMonthlyPRSI()}")
+    println("Monthly PAYE: ${getMonthlyPAYE()}")
+    println("Monthly Gross Pay: ${getGrossMonthlyPay()}")
+    println("Monthly Total Deductions: ${getTotalMonthlyDeductions()}")
+    println("Monthly Net Pay: ${getNetMonthlyPay()}")
+    println("Monthly Bonus: ${getMonthlyBonus()}")
     printPayslip()
+
 
     //Try adding program arguments via Run/Debug configuration.
     // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
@@ -32,22 +40,22 @@ fun printPayslip() {
 
     println(
         """
-         Monthly Payslip for: ${firstName.uppercase()} ${surname.uppercase()}
+         Monthly Payslip for: ${getFullName()}
         ______________________________________________________________________
          Employee's Full Details: ${firstName.uppercase()} ${surname.uppercase()} (${gender.uppercase()}), ID: $employeeID                  
         ______________________________________________________________________    
               PAYMENT DETAILS:                                                                    
-                   Salary: $monthlySalary
-                   Bonus:  $monthlyBonus   
+                   Salary: ${getMonthlySalary()}
+                   Bonus:  ${getMonthlyBonus()}   
                           
-                   Gross Pay = $grossPay
+                   Gross Pay = ${getGrossMonthlyPay()}
         ______________________________________________________________________
               DEDUCTION DETAILS:      
-                   PAYE: $monthlyPaye                
-                   PRSI: $monthlyPrsi  
+                   PAYE: ${getMonthlyPAYE()}                
+                   PRSI: ${getMonthlyPRSI()}  
                    Cycle To Work Scheme Deduction: $cycleToWorkSchemeMonthlyDeduction   
                    
-                   Total Deductions = $totalDeductions
+                   Total Deductions = ${getTotalMonthlyDeductions()}
         ______________________________________________________________________
               NET PAY: $netPay (Gross Pay - Total Deductions)
         ______________________________________________________________________"""
@@ -64,3 +72,13 @@ fun getFullName() = when (gender) {
     'f', 'F' -> "Ms. $firstName $surname"
     else -> "$firstName $surname"
 }
+
+fun getMonthlySalary() = roundToTwo(grossSalary / 12)
+
+fun getMonthlyPRSI() = roundToTwo(getMonthlySalary() * (prsiPercentage / 100))
+fun getMonthlyPAYE() = roundToTwo(getMonthlySalary() * (payePercentage / 100))
+fun getGrossMonthlyPay() = roundToTwo(getMonthlySalary() + (annualBonus / 12))
+fun getTotalMonthlyDeductions() = roundToTwo((getMonthlyPRSI() + getMonthlyPAYE() + cycleToWorkSchemeMonthlyDeduction))
+fun getNetMonthlyPay() = roundToTwo(getGrossMonthlyPay() - getTotalMonthlyDeductions())
+
+fun getMonthlyBonus() = roundToTwo(annualBonus / 12)
