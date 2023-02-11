@@ -29,28 +29,28 @@ fun printPayslip() {
     val totalDeductions = roundToTwo((monthlyPrsi + monthlyPrsi + cycleToWorkSchemeMonthlyDeduction))
     val netPay = roundToTwo((grossPay - totalDeductions))
 
-    println("-------------------------------------------------------------------")
-    println("| Employee Monthly Payslip                                        |")
-    println("|-----------------------------------------------------------------|")
-    println("|                                                                 |")
-    println("| Employee Name: ${firstName.uppercase()} ${surname.uppercase()}     Gender: ${gender.uppercase()}     Employee ID: ${employeeID}     |")
-    println("|                                                                 |")
-    println("|-----------------------------------------------------------------|")
-    println("|                                                                 |")
-    println("| Payment Details                         Deduction Details       |")
-    println("|                                                                 |")
-    println("|-----------------------------------------------------------------|")
-    println("| Salary: ${monthlySalary}          PAYE: ${monthlyPaye}     |")
-    println("| Bonus: ${monthlyBonus}                          PRSI: ${monthlyPrsi}               |")
-    println("|                                     Cycle to Work: ${cycleToWorkSchemeMonthlyDeduction}        |")
-    println("|                                                                 |")
-    println("|-----------------------------------------------------------------|")
-    println("| Gross: ${grossPay}                     Total Deductions: ${totalDeductions}    |")
-    println("|                                                                 |")
-    println("|-----------------------------------------------------------------|")
-    println("|                    NET PAY: ${netPay}                             |")
-    println("|                                                                 |")
-    println("|-----------------------------------------------------------------|")
+    println(
+        """
+         Monthly Payslip for: ${firstName.uppercase()} ${surname.uppercase()}
+        ______________________________________________________________________
+         Employee's Full Details: ${firstName.uppercase()} ${surname.uppercase()} (${gender.uppercase()}), ID: $employeeID                  
+        ______________________________________________________________________    
+              PAYMENT DETAILS:                                                                    
+                   Salary: $monthlySalary
+                   Bonus:  $monthlyBonus   
+                          
+                   Gross Pay = $grossPay
+        ______________________________________________________________________
+              DEDUCTION DETAILS:      
+                   PAYE: $monthlyPaye                
+                   PRSI: $monthlyPrsi  
+                   Cycle To Work Scheme Deduction: $cycleToWorkSchemeMonthlyDeduction   
+                   
+                   Total Deductions = $totalDeductions
+        ______________________________________________________________________
+              NET PAY: $netPay (Gross Pay - Total Deductions)
+        ______________________________________________________________________"""
+    )
 }
 
 // https://discuss.kotlinlang.org/t/how-do-you-round-a-number-to-n-decimal-places/8843
