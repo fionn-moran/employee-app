@@ -1,12 +1,13 @@
+import Controllers.EmployeeAPI
 import kotlin.math.round
-import Employee
+import Models.Employee
 import mu.KotlinLogging
 
 var employees = EmployeeAPI()
 val logger = KotlinLogging.logger {}
 
 fun main(args: Array<String>){
-    logger.info { "Launching Employee App" }
+    logger.info { "Launching Models.Employee App" }
     start()
 }
 
@@ -14,11 +15,11 @@ fun main(args: Array<String>){
 fun menu() : Int {
     logger.info { "Displaying employee menu" }
     print(""" 
-         |Employee Menu
-         |   1. Add Employee
+         |Models.Employee Menu
+         |   1. Add Models.Employee
          |   2. List All Employees
          |   3. Search Employees 
-         |   4. Print Payslip for Employee
+         |   4. Print Payslip for Models.Employee
          |  -1. Exit
          |       
          |Enter Option : """.trimMargin())

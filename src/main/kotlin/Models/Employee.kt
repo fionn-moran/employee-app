@@ -1,3 +1,6 @@
+package Models
+
+import roundToTwo
 
 class Employee (var firstName: String, var surname: String, var gender: Char, var employeeID: Int,
     var grossSalary: Double, var payePercentage: Double, var prsiPercentage: Double,
@@ -25,7 +28,7 @@ class Employee (var firstName: String, var surname: String, var gender: Char, va
         """
          Monthly Payslip for: ${getFullName()}
         ______________________________________________________________________
-         Employee's Full Details: ${firstName.uppercase()} ${surname.uppercase()} (${gender.uppercase()}), ID: $employeeID                  
+         Models.Employee's Full Details: ${firstName.uppercase()} ${surname.uppercase()} (${gender.uppercase()}), ID: $employeeID                  
         ______________________________________________________________________    
               PAYMENT DETAILS:                                                                    
                    Salary: ${getMonthlySalary()}
@@ -44,7 +47,7 @@ class Employee (var firstName: String, var surname: String, var gender: Char, va
         ______________________________________________________________________"""
 
     override fun toString(): String {
-        return "Employee(firstName='$firstName', surname='$surname', gender=$gender, employeeID=$employeeID, grossSalary=$grossSalary, payePercentage=$payePercentage, prsiPercentage=$prsiPercentage, annualBonus=$annualBonus, cycleToWorkSchemeMonthlyDeduction=$cycleToWorkSchemeMonthlyDeduction)"
+        return "Models.Employee(firstName='$firstName', surname='$surname', gender=$gender, employeeID=$employeeID, grossSalary=$grossSalary, payePercentage=$payePercentage, prsiPercentage=$prsiPercentage, annualBonus=$annualBonus, cycleToWorkSchemeMonthlyDeduction=$cycleToWorkSchemeMonthlyDeduction)"
     }
 
 

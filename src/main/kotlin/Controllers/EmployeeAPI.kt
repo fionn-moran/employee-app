@@ -1,3 +1,7 @@
+package Controllers
+
+import Models.Employee
+
 var lastId = 0
 
 internal fun getId(): Int {
