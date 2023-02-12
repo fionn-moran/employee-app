@@ -1,9 +1,11 @@
 import kotlin.math.round
-
+import Employee
 var employees = EmployeeAPI()
-fun main(args: Array<String>) {
 
+fun main(args: Array<String>){
+    start()
 }
+
 
 fun menu() : Int {
     print(""" 
@@ -37,8 +39,10 @@ fun start() {
 }
 
 fun list(){
-    println(employees.findAll())
+    employees.findAll()
+        .forEach{ println(it.toString()) }
 }
+
 
 fun search() {
     val employee = getEmployeeById()
@@ -60,21 +64,25 @@ fun paySlip(){
         println(employee.getPayslip())
 }
 
+fun dummyData() {
+    employees.create(Employee("Joe", "Soap", 'm', 0, 35655.43, 31.0, 7.5, 2000.0, 25.6))
+    employees.create(Employee("Joan", "Murphy", 'f', 0, 54255.13, 32.5, 7.0, 1500.0, 55.3))
+    employees.create(Employee("Mary", "Quinn", 'f', 0, 75685.41, 40.0, 8.5, 4500.0, 0.0))
+}
+
 
 
 
 // https://discuss.kotlinlang.org/t/how-do-you-round-a-number-to-n-decimal-places/8843
 fun roundToTwo(number: Double) = round(number * 100) / 100
 
-fun add() {
+fun add(){
     print("Enter first name: ")
     val firstName = readLine().toString()
     print("Enter surname: ")
     val surname = readLine().toString()
     print("Enter gender (m/f): ")
     val gender = readLine()!!.toCharArray()[0]
-    print("Enter employee ID: ")
-    val employeeID = readLine()!!.toInt()
     print("Enter gross salary: ")
     val grossSalary = readLine()!!.toDouble()
     print("Enter PAYE %: ")
@@ -82,20 +90,11 @@ fun add() {
     print("Enter PRSI %: ")
     val prsiPercentage = readLine()!!.toDouble()
     print("Enter Annual Bonus: ")
-    val annualBonus = readLine()!!.toDouble()
+    val annualBonus= readLine()!!.toDouble()
     print("Enter Cycle to Work Deduction: ")
-    val cycleToWorkMonthlyDeduction = readLine()!!.toDouble()
+    val cycleToWorkMonthlyDeduction= readLine()!!.toDouble()
 
-    employee = Employee(
-        firstName,
-        surname,
-        gender,
-        employeeID,
-        grossSalary,
-        payePercentage,
-        prsiPercentage,
-        annualBonus,
-        cycleToWorkMonthlyDeduction
-    )
+    employees.create(Employee(firstName, surname, gender, 0, grossSalary, payePercentage, prsiPercentage, annualBonus, cycleToWorkMonthlyDeduction))
 }
+
 
