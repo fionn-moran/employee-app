@@ -36,6 +36,11 @@ fun start() {
     } while (input != -1)
 }
 
+fun list(){
+    println(employees.findAll())
+}
+
+
 
 
 
