@@ -1,13 +1,18 @@
 import kotlin.math.round
 import Employee
+import mu.KotlinLogging
+
 var employees = EmployeeAPI()
+val logger = KotlinLogging.logger {}
 
 fun main(args: Array<String>){
+    logger.info { "Launching Employee App" }
     start()
 }
 
 
 fun menu() : Int {
+    logger.info { "Displaying employee menu" }
     print(""" 
          |Employee Menu
          |   1. Add Employee
@@ -39,6 +44,7 @@ fun start() {
 }
 
 fun list(){
+    logger.info { "Showing all current employees" }
     employees.findAll()
         .forEach{ println(it) }
 }
