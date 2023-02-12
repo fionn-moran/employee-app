@@ -40,7 +40,7 @@ fun start() {
 
 fun list(){
     employees.findAll()
-        .forEach{ println(it.toString()) }
+        .forEach{ println(it) }
 }
 
 
@@ -64,7 +64,7 @@ fun paySlip(){
         println(employee.getPayslip())
 }
 
-fun dummyData() {
+internal fun dummyData() {
     employees.create(Employee("Joe", "Soap", 'm', 0, 35655.43, 31.0, 7.5, 2000.0, 25.6))
     employees.create(Employee("Joan", "Murphy", 'f', 0, 54255.13, 32.5, 7.0, 1500.0, 55.3))
     employees.create(Employee("Mary", "Quinn", 'f', 0, 75685.41, 40.0, 8.5, 4500.0, 0.0))
