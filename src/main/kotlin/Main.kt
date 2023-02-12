@@ -1,51 +1,23 @@
 import kotlin.math.round
 
-var employee =  Employee("Joe", "Soap", 'm', 6143, 67543.21, 38.5, 5.2, 1450.50, 54.33)
+var employees = EmployeeAPI()
 fun main(args: Array<String>) {
 
-    add()
-
-    var input: Int
-
-    do {
-        input = menu()
-        when (input) {
-            1 -> println("Monthly Salary: ${getMonthlySalary()}")
-            2 -> println("Monthly PRSI: ${getMonthlyPRSI()}")
-            3 -> println("Monthly PAYE: ${getMonthlyPAYE()}")
-            4 -> println("Monthly Gross Pay: ${getGrossMonthlyPay()}")
-            5 -> println("Monthly Total Deductions: ${getTotalMonthlyDeductions()}")
-            6 -> println("Monthly Net Pay: ${getNetMonthlyPay()}")
-            7 -> println(getPayslip())
-            -1 -> println("Exiting App")
-            else -> println("Invalid Option")
-        }
-        println()
-    } while (input != -1)
+    print(""" 
+         |Employee Menu
+         |   1. Add Employee
+         |   2. List All Employees
+         |   3. Search Employees 
+         |   4. Print Payslip for Employee
+         |  -1. Exit
+         |       
+         |Enter Option : """.trimMargin())
+    return readLine()!!.toInt()
 }
 
 
 // https://discuss.kotlinlang.org/t/how-do-you-round-a-number-to-n-decimal-places/8843
 fun roundToTwo(number: Double) = round(number * 100) / 100
-
-
-
-
-fun menu() : Int {
-    print("""
-        Employee Menu for ${getFullName()}
-           1. Monthly Salary
-           2. Monthly PRSI
-           3. Monthly PAYE
-           4. Monthly Gross Pay
-           5. Monthly Total Deductions
-           6. Monthly Net Pay
-           7. Full Payslip
-          -1. Exit
-         Enter Option : """)
-    return readLine()!!.toInt()
-
-}
 
 fun add() {
     print("Enter first name: ")
