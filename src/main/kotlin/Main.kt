@@ -3,15 +3,16 @@ import kotlin.math.round
 var employee =  Employee("Joe", "Soap", 'm', 6143, 67543.21, 38.5, 5.2, 1450.50, 54.33)
 fun main(args: Array<String>) {
 
-    var input : Int
+    add()
 
+    var input: Int
 
     do {
         input = menu()
-        when(input) {
+        when (input) {
             1 -> println("Monthly Salary: ${getMonthlySalary()}")
             2 -> println("Monthly PRSI: ${getMonthlyPRSI()}")
-            3 ->println("Monthly PAYE: ${getMonthlyPAYE()}")
+            3 -> println("Monthly PAYE: ${getMonthlyPAYE()}")
             4 -> println("Monthly Gross Pay: ${getGrossMonthlyPay()}")
             5 -> println("Monthly Total Deductions: ${getTotalMonthlyDeductions()}")
             6 -> println("Monthly Net Pay: ${getNetMonthlyPay()}")
@@ -22,7 +23,6 @@ fun main(args: Array<String>) {
         println()
     } while (input != -1)
 }
-
 fun getPayslip() {
 
     val monthlySalary = roundToTwo(employee.grossSalary / 12)
@@ -94,3 +94,37 @@ fun menu() : Int {
     return readLine()!!.toInt()
 
 }
+
+fun add() {
+    print("Enter first name: ")
+    val firstName = readLine().toString()
+    print("Enter surname: ")
+    val surname = readLine().toString()
+    print("Enter gender (m/f): ")
+    val gender = readLine()!!.toCharArray()[0]
+    print("Enter employee ID: ")
+    val employeeID = readLine()!!.toInt()
+    print("Enter gross salary: ")
+    val grossSalary = readLine()!!.toDouble()
+    print("Enter PAYE %: ")
+    val payePercentage = readLine()!!.toDouble()
+    print("Enter PRSI %: ")
+    val prsiPercentage = readLine()!!.toDouble()
+    print("Enter Annual Bonus: ")
+    val annualBonus = readLine()!!.toDouble()
+    print("Enter Cycle to Work Deduction: ")
+    val cycleToWorkMonthlyDeduction = readLine()!!.toDouble()
+
+    employee = Employee(
+        firstName,
+        surname,
+        gender,
+        employeeID,
+        grossSalary,
+        payePercentage,
+        prsiPercentage,
+        annualBonus,
+        cycleToWorkMonthlyDeduction
+    )
+}
+
