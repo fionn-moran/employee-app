@@ -40,6 +40,14 @@ fun list(){
     println(employees.findAll())
 }
 
+fun search() {
+    val employee = getEmployeeById()
+    if (employee == null)
+        println("No employee found")
+    else
+        println(employee)
+}
+
 
 
 
