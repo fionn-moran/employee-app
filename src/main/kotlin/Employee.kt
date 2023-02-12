@@ -3,36 +3,36 @@ class Employee (var firstName: String, var surname: String, var gender: Char, va
     var grossSalary: Double, var payePercentage: Double, var prsiPercentage: Double,
     var annualBonus: Double, var cycleToWorkSchemeMonthlyDeduction: Double)
 
-fun getFullName() = when (employee.gender){
-    'm', 'M' -> "Mr. ${employee.firstName} ${employee.surname}"
-    'f', 'F' -> "Ms.  ${employee.firstName} ${employee.surname}"
-    else ->  "${employee.firstName} ${employee.surname}"
+fun getFullName() = when (gender){
+    'm', 'M' -> "Mr. ${firstName} ${surname}"
+    'f', 'F' -> "Ms.  ${firstName} ${surname}"
+    else ->  "${firstName} ${surname}"
 }
-fun getMonthlySalary() = roundToTwo(employee.grossSalary / 12)
+fun getMonthlySalary() = roundToTwo(grossSalary / 12)
 
-fun getMonthlyPRSI() = roundToTwo(getMonthlySalary() * (employee.prsiPercentage / 100))
-fun getMonthlyPAYE() = roundToTwo(getMonthlySalary() * (employee.payePercentage / 100))
-fun getGrossMonthlyPay() = roundToTwo(getMonthlySalary() + (employee.annualBonus / 12))
-fun getTotalMonthlyDeductions() = roundToTwo((getMonthlyPRSI() + getMonthlyPAYE() + employee.cycleToWorkSchemeMonthlyDeduction))
+fun getMonthlyPRSI() = roundToTwo(getMonthlySalary() * (prsiPercentage / 100))
+fun getMonthlyPAYE() = roundToTwo(getMonthlySalary() * (payePercentage / 100))
+fun getGrossMonthlyPay() = roundToTwo(getMonthlySalary() + (annualBonus / 12))
+fun getTotalMonthlyDeductions() = roundToTwo((getMonthlyPRSI() + getMonthlyPAYE() + cycleToWorkSchemeMonthlyDeduction))
 fun getNetMonthlyPay() = roundToTwo(getGrossMonthlyPay() - getTotalMonthlyDeductions())
 
-fun getMonthlyBonus() = roundToTwo(employee.annualBonus / 12)
+fun getMonthlyBonus() = roundToTwo(annualBonus / 12)
 
 fun getPayslip() {
 
-    val monthlySalary = roundToTwo(employee.grossSalary / 12)
-    val monthlyPrsi = roundToTwo(monthlySalary * (employee.prsiPercentage / 100))
-    val monthlyPaye = roundToTwo(monthlySalary * (employee.payePercentage / 100))
-    val monthlyBonus = roundToTwo((employee.annualBonus / 12))
-    val grossPay = roundToTwo((monthlySalary + (employee.annualBonus / 12)))
-    val totalDeductions = roundToTwo((monthlyPrsi + monthlyPrsi + employee.cycleToWorkSchemeMonthlyDeduction))
+    val monthlySalary = roundToTwo(grossSalary / 12)
+    val monthlyPrsi = roundToTwo(monthlySalary * (prsiPercentage / 100))
+    val monthlyPaye = roundToTwo(monthlySalary * (payePercentage / 100))
+    val monthlyBonus = roundToTwo((annualBonus / 12))
+    val grossPay = roundToTwo((monthlySalary + (annualBonus / 12)))
+    val totalDeductions = roundToTwo((monthlyPrsi + monthlyPrsi + cycleToWorkSchemeMonthlyDeduction))
     val netPay = roundToTwo((grossPay - totalDeductions))
 
     println(
         """
          Monthly Payslip for: ${getFullName()}
         ______________________________________________________________________
-         Employee's Full Details: ${employee.firstName.uppercase()} ${employee.surname.uppercase()} (${employee.gender.uppercase()}), ID: $employee.employeeID                  
+         Employee's Full Details: ${firstName.uppercase()} ${surname.uppercase()} (${gender.uppercase()}), ID: $employeeID                  
         ______________________________________________________________________    
               PAYMENT DETAILS:                                                                    
                    Salary: ${getMonthlySalary()}
@@ -43,7 +43,7 @@ fun getPayslip() {
               DEDUCTION DETAILS:      
                    PAYE: ${getMonthlyPAYE()}                
                    PRSI: ${getMonthlyPRSI()}  
-                   Cycle To Work Scheme Deduction: $employee.cycleToWorkSchemeMonthlyDeduction   
+                   Cycle To Work Scheme Deduction: $cycleToWorkSchemeMonthlyDeduction   
                    
                    Total Deductions = ${getTotalMonthlyDeductions()}
         ______________________________________________________________________
