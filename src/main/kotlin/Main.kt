@@ -48,6 +48,17 @@ fun search() {
         println(employee)
 }
 
+internal fun getEmployeeById(): Employee? {
+    print("Enter the employee id to search by: ")
+    val employeeID = readLine()!!.toInt()
+    return employees.findOne(employeeID)
+}
+
+fun paySlip(){
+    val employee = getEmployeeById()
+    if (employee != null)
+        println(employee.getPayslip())
+}
 
 
 
