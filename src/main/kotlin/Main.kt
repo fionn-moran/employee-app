@@ -3,6 +3,9 @@ import kotlin.math.round
 var employees = EmployeeAPI()
 fun main(args: Array<String>) {
 
+}
+
+fun menu() : Int {
     print(""" 
          |Employee Menu
          |   1. Add Employee
@@ -14,6 +17,26 @@ fun main(args: Array<String>) {
          |Enter Option : """.trimMargin())
     return readLine()!!.toInt()
 }
+
+fun start() {
+    var input: Int
+
+    do {
+        input = menu()
+        when (input) {
+            1 -> add()
+            2 -> list()
+            3 -> search()
+            4 -> paySlip()
+            -99 -> dummyData()
+            -1 -> println("Exiting App")
+            else -> println("Invalid Option")
+        }
+        println()
+    } while (input != -1)
+}
+
+
 
 
 // https://discuss.kotlinlang.org/t/how-do-you-round-a-number-to-n-decimal-places/8843
