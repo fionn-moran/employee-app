@@ -1,18 +1,10 @@
 import kotlin.math.round
 
-val firstName = "Joe"
-val surname = "Soap"
-val gender = 'm'
-val employeeID = 6143
-val grossSalary = 67543.21
-val payePercentage = 38.5
-val prsiPercentage = 5.2
-val annualBonus = 1450.50
-val cycleToWorkSchemeMonthlyDeduction = 54.33
-
+var employee =  Employee("Joe", "Soap", 'm', 6143, 67543.21, 38.5, 5.2, 1450.50, 54.33)
 fun main(args: Array<String>) {
 
     var input : Int
+
 
     do {
         input = menu()
@@ -33,19 +25,19 @@ fun main(args: Array<String>) {
 
 fun getPayslip() {
 
-    val monthlySalary = roundToTwo(grossSalary / 12)
-    val monthlyPrsi = roundToTwo(monthlySalary * (prsiPercentage / 100))
-    val monthlyPaye = roundToTwo(monthlySalary * (payePercentage / 100))
-    val monthlyBonus = roundToTwo((annualBonus / 12))
-    val grossPay = roundToTwo((monthlySalary + (annualBonus / 12)))
-    val totalDeductions = roundToTwo((monthlyPrsi + monthlyPrsi + cycleToWorkSchemeMonthlyDeduction))
+    val monthlySalary = roundToTwo(employee.grossSalary / 12)
+    val monthlyPrsi = roundToTwo(monthlySalary * (employee.prsiPercentage / 100))
+    val monthlyPaye = roundToTwo(monthlySalary * (employee.payePercentage / 100))
+    val monthlyBonus = roundToTwo((employee.annualBonus / 12))
+    val grossPay = roundToTwo((monthlySalary + (employee.annualBonus / 12)))
+    val totalDeductions = roundToTwo((monthlyPrsi + monthlyPrsi + employee.cycleToWorkSchemeMonthlyDeduction))
     val netPay = roundToTwo((grossPay - totalDeductions))
 
     println(
         """
          Monthly Payslip for: ${getFullName()}
         ______________________________________________________________________
-         Employee's Full Details: ${firstName.uppercase()} ${surname.uppercase()} (${gender.uppercase()}), ID: $employeeID                  
+         Employee's Full Details: ${employee.firstName.uppercase()} ${employee.surname.uppercase()} (${employee.gender.uppercase()}), ID: $employee.employeeID                  
         ______________________________________________________________________    
               PAYMENT DETAILS:                                                                    
                    Salary: ${getMonthlySalary()}
@@ -56,7 +48,7 @@ fun getPayslip() {
               DEDUCTION DETAILS:      
                    PAYE: ${getMonthlyPAYE()}                
                    PRSI: ${getMonthlyPRSI()}  
-                   Cycle To Work Scheme Deduction: $cycleToWorkSchemeMonthlyDeduction   
+                   Cycle To Work Scheme Deduction: $employee.cycleToWorkSchemeMonthlyDeduction   
                    
                    Total Deductions = ${getTotalMonthlyDeductions()}
         ______________________________________________________________________
@@ -70,21 +62,22 @@ fun getPayslip() {
 // https://discuss.kotlinlang.org/t/how-do-you-round-a-number-to-n-decimal-places/8843
 fun roundToTwo(number: Double) = round(number * 100) / 100
 
-fun getFullName() = when (gender) {
-    'm', 'M' -> "Mr. $firstName $surname"
-    'f', 'F' -> "Ms. $firstName $surname"
-    else -> "$firstName $surname"
+fun getFullName() = when (employee.gender){
+    'm', 'M' -> "Mr. ${employee.firstName} ${employee.surname}"
+    'f', 'F' -> "Ms.  ${employee.firstName} ${employee.surname}"
+    else ->  "${employee.firstName} ${employee.surname}"
 }
 
-fun getMonthlySalary() = roundToTwo(grossSalary / 12)
 
-fun getMonthlyPRSI() = roundToTwo(getMonthlySalary() * (prsiPercentage / 100))
-fun getMonthlyPAYE() = roundToTwo(getMonthlySalary() * (payePercentage / 100))
-fun getGrossMonthlyPay() = roundToTwo(getMonthlySalary() + (annualBonus / 12))
-fun getTotalMonthlyDeductions() = roundToTwo((getMonthlyPRSI() + getMonthlyPAYE() + cycleToWorkSchemeMonthlyDeduction))
+fun getMonthlySalary() = roundToTwo(employee.grossSalary / 12)
+
+fun getMonthlyPRSI() = roundToTwo(getMonthlySalary() * (employee.prsiPercentage / 100))
+fun getMonthlyPAYE() = roundToTwo(getMonthlySalary() * (employee.payePercentage / 100))
+fun getGrossMonthlyPay() = roundToTwo(getMonthlySalary() + (employee.annualBonus / 12))
+fun getTotalMonthlyDeductions() = roundToTwo((getMonthlyPRSI() + getMonthlyPAYE() + employee.cycleToWorkSchemeMonthlyDeduction))
 fun getNetMonthlyPay() = roundToTwo(getGrossMonthlyPay() - getTotalMonthlyDeductions())
 
-fun getMonthlyBonus() = roundToTwo(annualBonus / 12)
+fun getMonthlyBonus() = roundToTwo(employee.annualBonus / 12)
 
 fun menu() : Int {
     print("""
