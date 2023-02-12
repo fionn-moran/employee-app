@@ -42,4 +42,10 @@ class Employee (var firstName: String, var surname: String, var gender: Char, va
         ______________________________________________________________________
               NET PAY: ${getNetMonthlyPay()} (Gross Pay - Total Deductions)
         ______________________________________________________________________"""
+
+    override fun toString(): String {
+        return "Employee(firstName='$firstName', surname='$surname', gender=$gender, employeeID=$employeeID, grossSalary=$grossSalary, payePercentage=$payePercentage, prsiPercentage=$prsiPercentage, annualBonus=$annualBonus, cycleToWorkSchemeMonthlyDeduction=$cycleToWorkSchemeMonthlyDeduction)"
+    }
+
+
 }
